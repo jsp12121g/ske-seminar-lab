@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: order-service-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jsp12121g/ske-seminar-lab.git
+    targetRevision: main
+    path: overlays/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ske-prod
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      jsonPointers:
+        - /spec/replicas
+  # prod เนเธกเนเธกเธต automated โ’ เธ•เนเธญเธเธเธ” Sync เน€เธญเธ (เน€เธ—เธตเธขเธเน€เธ—เนเธฒเธเธฒเธฃเธญเธเธธเธกเธฑเธ•เธดเธเธถเนเธเธฃเธฐเธเธ)
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - RespectIgnoreDifferences=true
