@@ -14,7 +14,7 @@ patches:
         value: 1
       - op: replace
         path: /spec/template/spec/containers/0/args/1
-        value: "-text=SKE Order Service v1.0 (dev) | Msg: $(WELCOME_MSG) | Env: $(APP_ENV)"
+        value: "-text=SKE Order Service v1.1 (dev) | Msg: $(WELCOME_MSG) | Env: $(APP_ENV)"
   - target:
       kind: HorizontalPodAutoscaler
       name: order-service-hpa
